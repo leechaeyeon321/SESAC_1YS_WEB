@@ -1,27 +1,13 @@
 <html>
     <head>
         <script>
-            var sum1 = 0;
-            var sum2 = 0;
-            var sum3 = 0;
-
-            for(var n = 0; n < 100; n++){
-                if (n % 2 == 0) {
-                    sum1=sum1 += n
+            var sum = 0;
+            for ( var i = 0; i < 100; i++ ) {
+                if ( i % 2 == 0 || i % 3 == 0 ) {
+                    sum = sum + i;
                 }
             }
-            for(var i = 0; i < 100; i++){
-                if (i % 3 == 0) {
-                    sum2=sum2+=i
-                }
-            }
-            for(var a = 0; a < 100; a++){
-                if (a % 6 == 0) {
-                    sum3=sum3 +=a
-                }
-            }
-            console.log((sum1+sum2)-sum3);
-            
+            console.log( sum );
         </script>
     </head>
     <body>
