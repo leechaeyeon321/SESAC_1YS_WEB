@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <script>
+            //alert('hi'); /*기본 알림창을 띄우는 것*/
+            //console.log('hello');
+            //var a;
+            //console.log(a);
+            //var a = "1";
+            //console.log(a);
+            //a = 2;
+            //console.log(a); // 이미 선언된 변수 a의 값을 바꿨기 때문에 a = 2가 됨.
+            
+            //let b;
+            //console.log(b);
+            //b = 1;
+
+            //console.log(a+b);
+            //console.log(a+"반갑습니다.")
+
+            //console.log(parseInt(a)+b); //parseInt는 정수가 아닌 것을 정수로 바꾸어준다.
+
+            //console.log(typeof('문자'));
+            //console.log(typeof(245));
+            //console.log(typeof(function(){}));
+            //console.log(typeof(true));
+            //console.log(typeof({}));
+            //console.log(typeof([]));
+            //console.log(typeof(NaN));
+            //console.log(typeof(null));
+            
+            //sesac();
+            //function sesac() {
+            //    console.log("sesac hi!");
+            //}
+            //sesac(); // 함수가 선언된 이후에 실행되어야 한다.
+
+            //function sesac(){
+                
+            //}
+            //function sesac2(abc, test, a){ //parameter: 실행했을 때 받는 것 parameter가 있으면 parameter 순서에 따라서 값을 입력해야 함.
+            //    alert(abc + " " + a +"hello");
+            //}
+            //sesac2("홍길동", " ", "13");
+            //sesac2(a);
+            
+            function init(){
+                console.log("init")
+            }
+            function parameter1(a) {
+                console.log(a);
+            
+            }
+            function parameter2(a, b){
+                console.log(a + " " +b);
+            }
+            function parameter3(a,b,c){
+                console.log("a : " + a);
+                console.log("b : " + b);
+                console.log("c : " + c);
+            }
+            init(); // 기본 형태 실행
+            parameter1(); // parameter을 받음에도 전달하지 않기
+            parameter1(10); // parameter 1개 전달
+            parameter2(5, 3);
+            parameter3(1,2,3);
+            var variable = "hi";
+            parameter3(variable, variable, variable);
+            parameter3(variable, variable);
+            parameter3(variable);
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
