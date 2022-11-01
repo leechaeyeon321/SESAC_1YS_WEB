@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+                background: blue;
+                position: relative;
+                animation-name: anim;
+                animation-duration: 2s; /*애니메이션의 작동시간*/
+                animation-delay: 1s;/*애니메이션이 시작되기 전에 delay 시간을 설정하는 것*/
+                animation-timing-function: ease;/**/
+                animation-iteration-count: 3;
+            }
+
+            @keyframes anim {
+                /* from {left: 0px;}
+                to {left: 100px;}*/
+                0% {left: 0px;}
+                50% {left: 200px;}
+                100% {left: 100px;}
+                /*%로 지정하면 좀 더 세부적으로 에니메이션의 상태를 나눌 수 있다.*/
+            }
+            .div1{
+                border-radius: 50px;
+                background: yellow;
+                animation-name: ball; 
+                animation-duration: 3s;
+                animation-iteration-count: 5;
+            }
+            @keyframes ball {
+                to {top: 100px; opacity: 0;}
+                from {top: 300px; opacity: 1;} /*opacity 불투명도*/
+            }
+        </style>
+    </head>
+    <body>
+        <div></div>
+        <div class="div1"></div>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+                background: pink;
+                position: relative;
+                border-radius: 50px;
+                animation-name: anim;
+                animation-duration: 3s;
+                animation-delay: 1s;
+                animation-timing-function: ease;
+                animation-iteration-count: 6;
+            }
+            @keyframes anim {
+                0% {left: 0px; top: 0px;}
+                25% {left: 200px; top: 0px;}
+                50% {left: 200px; top: 200px;}
+                75% {left: 0px; top: 200px;}
+                100% {left: 0px; top: 0px;}
+            }
+        </style>
+    </head>
+    <body>
+        <div></div>
+    </body>
+</html>
