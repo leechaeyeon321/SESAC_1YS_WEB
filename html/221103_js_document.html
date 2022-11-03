@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Document</title>
+        <script>
+            console.log(document.documentElement);
+            console.log(document.head);
+            console.log(document.title);
+            console.log(document.URL);
+            console.log(document.domain);
+        </script>
+    </head>
+    <body>
+        <img src="./cat.jpg" width="100" height= "100">
+        <img src="./cat.jpg" width="100" height= "100">
+        <img src="./cat.jpg" width="100" height= "100">
+        <div id="div1">
+            <input type="text" id = "input1" value="입력값">
+            <p class="css1">p1</p>
+            <p class="css1">p2</p>
+            <div>
+                <p class="css1">p3</p>
+            </div>
+            <button type= "button" onclick="getData();">input 버튼</button>
+            <button type= "button" onclick="getData2();">p태그 버튼</button>
+        </div>
+        <script>
+            console.log(document.getElementById("input1"));
+            console.log(document.getElementsByClassName("css1"));//여러개가 가져와진다.
+            console.log(document.getElementsByClassName("css1")[0]);//특정 한개만 가져오길 원하면 index로 접근하면 됨.
+            console.log(document.getElementsByTagName("img"));
+
+            console.log(document.querySelector("#input1"));//querySelector은 개수와 상관없이 가장 위에 있는 요소만 선택한다.
+            console.log(document.querySelector(".css1"));
+            console.log(document.querySelectorAll(".css1"));//선택자를 이용해서 여러개를 가지고 오고 싶을 때 querySelectorAll사용
+            console.log(document.querySelectorAll(".css1")[1]);
+            //HTMLCollection은 실시간으로 변화를 반영해서 가져온다, Nodelist는 변화가 반영되지 않는다.
+            function getData() {
+                var input = document.getElementById("input1");
+                console.log(input.value);
+            }
+            function getData2() {
+                var p1 = document.getElementsByClassName("css1")[0];
+
+                console.log(p1);
+                console.log(p1.value);
+                console.log(p1.text);
+                console.log(p1.html);
+                console.log(p1.innerText); // 안에 있는 글자를 가져와라
+                console.log(p1.innerHTML); // 안에 있는 글자를 가져와라
+
+                //p1.innerText = "p태그 입니다."
+                p1.innerHTML = "<strong>p태그입니다.</strong>"; 
+                //글자로 인식이 되는 지(innerText)와 적은 것이 요소로 인식이 되는 지(innerHTML)의 차이
+            } //input태그에는 value가 존재하지만 p태그에는 value가 존재하지 않음.
+        </script>
+    </body>
+</html>

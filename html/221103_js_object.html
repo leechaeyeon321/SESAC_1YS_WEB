@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <script>
+            var cat = {
+                name: '나비',
+                age: 1,
+                mew: function() {
+                    return "야옹";
+                }
+            } // 하나의 함수에는 하나의 return만 존재할 수 있다. (return이 없는 건 가능)
+            console.log(cat);
+            console.log(cat.name); // 객체.속성 => 나비라는 값을 가져온다.
+            console.log(cat.mew()); // 객체.함수 => cat이라는 객체 안에 있는 mew라는 함수를 실행시켜라.
+
+            function hello() {
+                return " 안녕";
+            } // return은 던져주는 것.
+            function hi() {
+                console.log("hi");
+            }
+            console.log(hi());
+            console.log(hello());
+
+            var a = hello();
+            console.log(a);
+
+            var arr1 = [1,2,3,'a', 'b', 'c'];
+            var arr2 = new Array(1,2,3,'a', 'b', 'c');
+
+            console.log(arr1);
+            console.log(arr1[0]);
+            console.log(arr1.indexOf('a')); // a는 배열 중 몇번째인지 찾아줌.
+            console.log("length: " + arr1.length);
+
+            arr1.push('d');// 가장 마지막에 요소 추가
+            console.log(arr1);
+            arr1.pop(); //맨 뒤에 있는 요소를 꺼낸다.
+            console.log(arr1);
+
+            console.log(arr1[2]);
+            arr1.unshift('0'); //가장 앞의 요소 추가
+            console.log(arr1[2]);
+            console.log(arr1)
+            arr1.shift(); //맨 앞에 있는 요소를 꺼낸다.
+            console.log(arr1[2]);
+            console.log(arr1);
+
+            var me = {
+                name: '이채연',
+                gender: '1109'
+            };
+            console.log(me);
+            console.log(me["name"]);
+            console.log(me.name); // 딕셔너리는 인덱스 개념이 없고 키만 있다.
+
+            //배열은 인덱스로 가져올 수 있다.
+
+            me.gender = 'M';
+            me["age"] = 10;
+            console.log(me);
+            // 딕셔너리에서는 .으로도 가져올 수 있고 []로도 가져올 수 있다.
+            //정리
+            var ar = [1,2];
+            //배열에서 값을 가져올 때는 index를 기준으로 가져올 수 있다.
+            console.log(ar[0]);
+
+            console.log("-----------------")
+            var date = new Date();
+            console.log(date);
+
+            console.log(date.getYear()); // 2000년대와 1900년대를 구분하기 위해 122가 출력됨.
+            console.log(date.getMonth());
+            console.log(date.getDate());
+            console.log(date.getDay());// 요일[일, 월, 화, 수, 목, 금, 토] 중 4인덱스
+            console.log(date.getTime()); // 밀리초
+            console.log(date.getHours());
+
+            console.log("-----------------")
+            //Math 객체- 함수
+            console.log(Math.min())
+            console.log(Math.min( -10, 2, 10));
+            console.log(Math.min(0,'a', 5));
+
+            console.log(Math.max(-10, 2, 10));
+            console.log(Math.random()); // 0에서 1사이의 숫자가 랜덤으로 나타난다.
+            var min = 1; var max= 10;
+            console.log(Math.random()*(max-min)+min); //최솟갑과 최댓값 사이의 랜덤한 숫자
+
+            console.log(Math.round(1,2));
+            console.log(Math.round(-1.7)); 
+            // 소숫점 첫번째 자리에서 반올림 하는 것. 정수로 반환한다.
+            //만약 소숫점 두번째 자리에서 반올림 하고 싶으면 곱하기 10을 했다가 나누기 10을 하면 됨.
+
+            console.log( Math.floor(1.9)); // 내림 => 정수로 만들어 준다.
+            console.log(Math.ceil(1.1)); // 올림 => 정수로 만들어준다.
+        </script>
+    </head>
+</html>

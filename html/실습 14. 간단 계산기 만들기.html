@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>간단 계산기 만들기</title>
+        <script>
+            function calculate() {
+                var input = document.getElementById("value1").value;
+               
+                var input2 = document.getElementById("value2").value;
+                
+                var calculate = document.getElementById("calculate");
+                
+                var effect = document.getElementById("effect");
+                
+                if (calculate.value == "+"){
+                   effect.value = Number(input) + Number(input2);
+                } else if (calculate.value == "-"){
+                   effect.value = Number(input) - Number(input2);
+                } else if (calculate.value == "*"){
+                    effect.value = Number(input) * Number(input2);
+                } else if (calculate.value == "/"){
+                    effect.value = Number(input) / Number(input2);
+                }
+                // console.log(input.value calculate.value input2.value);
+                //effect.innerHTML("input.value calculate.value input2.value")
+            }
+            function first() {
+            document.getElementById("value1").value ="";
+            document.getElementById("value2").value ="";
+            document.getElementById("calculate").value ="";
+            document.getElementById("effect").value="";
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            값1 <input type="text" id = "value1" value="">
+            <br>
+            값2 <input type="text" id = "value2" value="">
+            <br>
+            연산자 <input type="text" id = "calculate" value="">
+            <br>
+            결과 <input type="text" id = "effect" value="">
+            <br>
+            <button type= "button" onclick="calculate();">계산하기</button>
+            <button type= "button" onclick="first();">초기화</button>
+        </div>
+    </body>
+</html>

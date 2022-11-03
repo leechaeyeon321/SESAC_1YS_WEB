@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>실습 15. 방명록 만들기</title>
+        <script>
+            var count = 0;
+            function fsroo(){
+                count++;
+                var writer = document.getElementById("writer").value;
+                var content = document.getElementById("content").value;
+                
+                var table = document.getElementById("table");
+                var tr = document.createElement("tr");
+
+                var number = document.createElement("td");
+                tr.appendChild(number);
+                var name = document.createElement("td");
+                tr.appendChild(name);
+                var text = document.createElement("td");
+                tr.appendChild(text);
+                var day = document.createElement("td");
+                tr.appendChild(day);
+                table.appendChild(tr); // 비워져있는 tr이 아닌 td가 들어있는 tr을 table에 appendChild 해주어야 함.
+                number.innerText = count;
+                name.innerText = writer;
+                text.innerText = content;
+                function getClock() {
+                    var date = new Date();
+                    var year = date.getFullYear();
+                    var month = date.getMonth();
+                    var d = date.getDate();
+                    var hour = date.getHours();
+                    var min = date.getMinutes();
+                    day.innerText = `${year}-${month}-${d} ${hour}:${min}`
+                }
+                getClock();
+            }
+            
+        </script>
+    </head>
+    <body>
+        <div>
+            <h4>방명록 입니다.</h4>
+            <h5>작성자 <input type="text" id="writer" value=""></h5>
+            <h5>내용 <input type="text" id="content" value=""></h5>
+            <button style="margin: 10px;" onclick="fsroo()">작성</button>
+            <table id = "table" border="2" cellpadding=10 cellspacing=0 style="text-align: center;">
+                <tr>
+                    <td>번호</td>
+                    <td>이름</td>
+                    <td>내용</td>
+                    <td>작성일</td>
+                </tr>
+            </table>
+        </div>
+
+    </body>
+</html>
