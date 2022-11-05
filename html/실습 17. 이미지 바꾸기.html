@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script src="./jquery-ui-1.13.2/jquery-ui.js"></script>
+        <link href="./jquery-ui-1.13.2/jquery-ui.css">
+        <style>
+            .div{width: 500px; height: 500px;}
+            .apple{width: 500px; height: 500px;}
+            .banana{width: 500px; height: 500px;}
+            .grape{width: 500px; height: 500px;}
+            .peach{width: 500px; height: 500px;}
+        </style>
+        <script>
+            function apple() {
+                $("img").attr("src", "./사과.jpg");
+            }
+            function banana() {
+                $("img").attr("src", "./바나나.jpg");
+            }
+            function grape() {
+                $("img").attr("src", "./포도.jpg");
+            }
+            function peach() {
+                $("img").attr("src", "./복숭아.jpg");
+            }
+        </script>
+    </head>
+    <body>
+        <div class="div">
+            <img src="" alt="" >
+        </div>
+        <button type="button" onclick="apple()">사과</button>
+        <button type="button" onclick="banana()">바나나</button>
+        <button type="button" onclick="grape()">포도</button>
+        <button type="button" onclick="peach()">복숭아</button>
+        
+    </body>
+</html>
