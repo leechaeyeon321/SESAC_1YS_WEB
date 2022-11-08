@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        body태그
+        <input type="text" id="input1">
+        <p id="alert"></p>
+        <div style="width: 100px; height: 1000px; background-color: yellow;" id="div1"></div>
+        <script>
+            //키보드 이벤트
+            $('#input1').keydown(function(e){
+                console.log("keydown: ", e.currentTarget.value)
+                $('#alert').text("글자가 입력됨, " + e.currentTarget.value);
+                console.log("input keydown"); //key를 내렸다. 눌렀지만 반영되지 않았을 때가 keydown
+                console.log(e);
+                if(e.keyCode == 13){ //e라는 객체에는 많은 정보가 들어 있는데 그 중 keycode가 13일 때
+                    console.log("enter key");
+                } // 우리가 사용하는 키보드에는 keycode가 정해져 있다.
+            });
+            $('#input1').keyup(function(e){
+                console.log("keyup: "+ e.currentTarget.value)
+                console.log("input keyup"); //key를 올렸다.
+            });
+
+            //마우스 이벤트
+            $("#div1").click(function(e){
+                console.log("div click");
+                console.log("e : ", e);
+            }); //id가 div1인 선택자에게 클릭 이벤트가 발생하면 실행되는 함수가 function(e)이다.
+            //함수에 e라는 파라미터 이벤트가 발생했을 때 이벤트 객체라는 것을 던져준다. 함수 안에 있는 변수
+            //객체를 사용하지 않을거면 e 를 굳이 사용하지 않아도 됨.   
+            $("#div1").mouseover(function(){
+                console.log("div mouseover");
+            }); // 특정 선택자에게 마우스를 올렸을 때 발생하는 이벤트가 mouseover
+            //hover와 mouseover의 차이
+            $('#div1').hover(function(){
+                console.log("div hover"); //올렸을 때
+            }, function(){
+                console.log("div hover2") // 뗐을 때
+            });
+            //mouseover는 마우스를 올렸을 때에만 감지, hover는 올렸을 때 뗐을 때 둘 다 감지.
+            //hover는 올렸을 때 뗐을 때 둘 다 함수를 다르게 설정할 수 있다.
+
+            $(window).scroll(function(){
+                console.log("window scroll");
+            }); //전체 창에서 스크롤 이벤트가 발생했을 때의 함수 
+
+            
+
+            //로딩 이벤트
+            //$(document).ready(function(){
+            //    alert("document.ready");
+            //}); //이벤트가 끝났을 때 문서를 읽어 온다.
+            $(function(){
+                alert("ready");
+            }); // 동일한 이벤트 두개 있으면 먼저 쓴 이벤트 먼저 실행된다. 사람들한테 내용이 보여지기 전에 넣는 곳.
+        </script>
+    </body>
+</html>

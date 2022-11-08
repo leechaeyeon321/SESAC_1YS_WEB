@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <style>
+            td{padding: 20px;}
+            .class{
+                background-color: pink;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div>
+            날짜 : <input type="text" id="date" readonly> <br>
+            내용 : <input type="text" id="content"> <br>
+            <button type="button" onclick="writeSchedule();">작성</button> <br>
+        </div> 
+       
+        <p style="color: green; text-align: center;">2022년 7월</p>
+        <table align="center" width=500 style="text-align:center;"> 
+            <tr>
+                <td style="color: red;">日</td>
+                <td>月</td>
+                <td>火</td>
+                <td>水</td>
+                <td>木</td>
+                <td>金</td>
+                <td style="color: blue;">土</td>
+            </tr>
+            <tr>
+                <td style="color: red;"><p></p></td>
+                <td><p></p></td>
+                <td><p></p></td>
+                <td><p></p></td>
+                <td><p></p></td>
+                <td><p>1</p></td>
+                <td><p style="color: blue;">2</p></td>
+            </tr>
+            <tr>
+                <td style="color: red;"><p>3</p></td>
+                <td><p>4</p></td>
+                <td><p>5</p></td>
+                <td><p>6</p></td>
+                <td><p>7</p></td>
+                <td><p>8</p></td>
+                <td><p style="color: blue;">9</p></td>
+            </tr>
+            <tr>
+                <td style="color: red;"><p>10</p></td>
+                <td><p>11</p></td>
+                <td><p>12</p></td>
+                <td><p>13</p></td>
+                <td><p>14</p></td>
+                <td><p>15</p></td>
+                <td><p style="color: blue;">16</p></td>
+            </tr>
+            <tr>
+                <td style="color: red;"><p>17</p></td>
+                <td><p>18</p></td>
+                <td><p>19</p></td>
+                <td><p>20</p></td>
+                <td><p>21</p></td>
+                <td><p>22</p></td>
+                <td><p style="color: blue;">23</p></td>
+            </tr>
+            <tr>
+                <td style="color: red;"><p>24</p></td>
+                <td><p>25</p></td>
+                <td><p>26</p></td>
+                <td><p>27</p></td>
+                <td><p>28</p></td>
+                <td><p>29</p></td>
+                <td><p style="color: blue;">30</p></td>
+            </tr>
+            <tr>
+                <td style="color: red;"><p>31</p></td>
+                <td><p></p></td>
+                <td><p></p></td>
+                <td><p></p></td>
+                <td><p></p></td>
+                <td><p></p></td>
+                <td><p style="color: blue;"></p></td>
+            </tr>
+        </table>
+        <script>
+            var target; //변수를 밖에 선언해두면 어디서든 사용할 수 있게 됨.
+            //td 태그 전체에 클릭 이벤트를 등록하겠다.
+            $("td").on("click", function( obj ){
+                //obj는 현재 click 이벤트가 발동한 마우스 이벤트 객체
+                //obj.currentTarget은 현재 이벤트가 발생한 요소(<td>6</td>를 클릭했다면 obj.currentTarget은 <td>6</td>)
+                target = obj.currentTarget; // 특정한 곳에서만 쓸 수 있는 함수는 지역 범수
+                console.log( target );
+                console.log(obj);
+                console.log(obj.currentTarget);
+                console.log(obj.currentTarget.children);
+                console.log(obj.currentTarget.children[0]);
+                $("#date").val($(obj.currentTarget.children[0]).text());
+            });
+            function writeSchedule(){
+                console.log(target)
+                //$("div").removeClass("class");->만약에 방금 쓴 글자에만 class를 주고 싶을 때
+                var content = $('#content').val();
+                //target은 위에서 선택한 요소.
+                //target.childeren.length는 내가 선택한 요소의 자식들의 개수를 가져온다.
+                if (target.children.length > 1){
+                    var div = target.children[1];
+                    div.innerText = content;
+                    $(div).addClass("class");
+                    // 1개 
+                } else {
+                    var div = document.createElement("div");
+                    div.innerText = content;
+                    $(target).append(div);
+                    $(div).addClass("class");
+                }
+                
+            }
+        </script>
+    </body>
+</html>

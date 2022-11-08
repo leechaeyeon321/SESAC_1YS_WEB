@@ -5,38 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NEWS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>AOS.init();</script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="https://newjeans.kr/">NEWJEANS</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="./실습 17. Bootstrap 자유 사용.html">Home</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Member
-                </a>
-                <ul class="dropdown-menu" style="background-color: #B2CCFF; color: aliceblue;">
-                  <li><a class="dropdown-item" href="./minji.html">MINJI</a></li>
-                  <li><a class="dropdown-item" href="#">HANNI</a></li>
-                  <li><a class="dropdown-item" href="#">DANIELLE</a></li>
-                  <li><a class="dropdown-item" href="#">HAERIN</a></li>
-                  <li><a class="dropdown-item" href="#">HYEIN</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./news.html">NEWS</a>
-              </li>
-            </form>
-          </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="https://newjeans.kr/">NEWJEANS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./실습 21. 전체 실습.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Member
+              </a>
+              <ul class="dropdown-menu" style="background-color: #B2CCFF; color: aliceblue;">
+                <li><a class="dropdown-item" href="./minji.html">MINJI</a></li>
+                <li><a class="dropdown-item" href="./hanni.html">HANNI</a></li>
+                <li><a class="dropdown-item" href="#">DANIELLE</a></li>
+                <li><a class="dropdown-item" href="#">HYEIN</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./newjeans_schedule.html">SCHEDULE</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./news.html">NEWS</a>
+            </li>
+          </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
     <div style="display: inline-flex;">
         <div class="card" style="width: 18rem;  margin-left: 20px;">
             <img src="./newjeans1.jpg" class="card-img-top" style="height: 55%;" alt="...">
@@ -63,6 +69,48 @@
             </div>
           </div>
       </div>
+    <canvas id="myChart" width="200px" height="200px" style="border-style: solid; border-width: 10px; border-radius: 10px; padding: 10px; margin: 10px; border-color: grey;"></canvas>
+    <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
+            datasets: [{
+                label: '# of Votes',
+                data: [1, 9, 3, 5, 2, 3, 7, 8],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   </body>
 </html>

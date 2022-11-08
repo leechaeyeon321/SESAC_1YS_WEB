@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>NEWJEANS</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+            .jm-font{
+              font-family: 'Jeju Gothic', sans-serif;
+            }
+            * {
+                box-sizing: border-box;
+                font-family: 'Roboto', sans-serif;
+                list-style: none;
+                margin: 0;
+                outline: none;
+                padding: 0;
+                }
+
+                a {
+                text-decoration: none;
+                }
+
+                body, html {
+                height: 100%;
+                }
+
+                body {
+                    background: #dfebed;
+                    font-family: 'Roboto', sans-serif;
+                }
+
+                .container {
+                    align-items: center;
+                    display: flex;
+                    height: 100%;
+                    justify-content: center;
+                    margin: 0 auto;
+                    max-width: 600px;
+                    width: 100%;
+                }
+
+                .calendar {
+                    background: #2b4450;
+                    border-radius: 4px;
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+                    height: 600px;
+                perspective: 1000;
+                    transition: .9s;
+                    transform-style: preserve-3d;
+                    width: 100%;
+                }
+
+                /* Front - Calendar */
+                .front {
+                    transform: rotateY(0deg);
+                }
+
+                .current-date {
+                    border-bottom: 1px solid rgba(73, 114, 133, .6);
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 30px 40px;
+                }
+
+                .current-date h1 {
+                    color: #dfebed;
+                    font-size: 1.4em;
+                    font-weight: 300;
+                }
+
+                .week-days {
+                    color: #dfebed;
+                    display: flex;
+                    justify-content: space-between;
+                    font-weight: 600;
+                    padding: 30px 40px;
+                }
+
+                .days {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                }
+
+                .weeks {
+                    color: #fff;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0 40px;
+                }
+
+                .weeks div {
+                    display: flex;
+                    font-size: 1.2em;
+                    font-weight: 300;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    width: 100%;
+                }
+
+                .last-month {
+                    opacity: .3;
+                }
+
+                .weeks span {
+                    padding: 10px;
+                }
+
+                .weeks span.active {
+                    background: #f78536;
+                    border-radius: 50%;
+                }
+
+                .weeks span:not(.last-month):hover {
+                    cursor: pointer;
+                    font-weight: 600;
+                }
+
+                .event {
+                    position: relative;
+                }
+
+                .event:after {
+                    content: '•';
+                    color: #f78536;
+                    font-size: 1.4em;
+                    position: absolute;
+                    right: -4px;
+                    top: -4px;
+                }
+
+                /* Back - Event form */
+
+                .back {
+                    height: 100%;
+                    transform: rotateY(180deg);
+                }
+
+                .back input {
+                    background: none;
+                    border: none;
+                    border-bottom: 1px solid rgba(73, 114, 133, .6);
+                    color: #dfebed;
+                    font-size: 1.4em;
+                    font-weight: 300;
+                    padding: 30px 40px;
+                    width: 100%;
+                }
+
+                .info {
+                    color: #dfebed;
+                    display: flex;
+                    flex-direction: column;
+                    font-weight: 600;
+                    font-size: 1.2em;
+                    padding: 30px 40px;
+                }
+
+                .info div:not(.observations) {
+                    margin-bottom: 40px;
+                }
+
+                .info span {
+                    font-weight: 300;
+                }
+
+                .info .date {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                .info .date p {
+                    width: 50%;
+                }
+
+                .info .address p {
+                    width: 100%;
+                }
+
+                .actions {
+                    bottom: 0;
+                    border-top: 1px solid rgba(73, 114, 133, .6);
+                    display: flex;
+                    justify-content: space-between;
+                    position: absolute;
+                    width: 100%;
+                }
+
+                .actions button {
+                    background: none;
+                    border: 0;
+                    color: #fff;
+                    font-weight: 600;
+                    letter-spacing: 3px;
+                    margin: 0;
+                    padding: 30px 0;
+                    text-transform: uppercase;
+                    width: 50%;
+                }
+
+                .actions button:first-of-type {
+                    border-right: 1px solid rgba(73, 114, 133, .6);
+                }
+
+                .actions button:hover {
+                    background: #497285;
+                    cursor: pointer;
+                }
+
+                .actions button:active {
+                    background: #5889a0;
+                    outline: none;
+                }
+
+                /* Flip animation */
+
+                .flip {
+                transform: rotateY(180deg);
+                }
+
+                .front, .back {
+                    backface-visibility: hidden;
+                }
+
+          </style>
+    </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="https://newjeans.kr/">NEWJEANS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./실습 21. 전체 실습.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Member
+                </a>
+                <ul class="dropdown-menu" style="background-color: #B2CCFF; color: aliceblue;">
+                  <li><a class="dropdown-item" href="./minji.html">MINJI</a></li>
+                  <li><a class="dropdown-item" href="./hanni.html">HANNI</a></li>
+                  <li><a class="dropdown-item" href="#">DANIELLE</a></li>
+                  <li><a class="dropdown-item" href="#">HYEIN</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./newjeans_schedule.html">SCHEDULE</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./news.html">NEWS</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="calendar">
+          <div class="front">
+            <div class="current-date">
+              <h1>Tuesday 8th</h1>
+              <h1>November 2022</h1>	
+            </div>
+  
+            <div class="current-month">
+              <ul class="week-days">
+                <li>MON</li>
+                <li>TUE</li>
+                <li>WED</li>
+                <li>THU</li>
+                <li>FRI</li>
+                <li>SAT</li>
+                <li>SUN</li>
+              </ul>
+  
+              <div class="weeks">
+                <div class="first">
+                  <span class="last-month"><p>30</p></span>
+                  <span class="last-month"><p>31</p></span>
+                  <span><p>01</p></span>
+                  <span><p>02</p></span>
+                  <span><p>03</p></span>
+                  <span><p>04</p></span>
+                  <span><p>05</p></span>
+                </div>
+  
+                <div class="second">
+                  <span><p>06</p></span>
+                  <span><p>07</p></span>
+                  <span class="event"><p>08</p></span>
+                  <span><p>09</p></span>
+                  <span><p>10</p></span>
+                  <span><p>11</p></span>
+                  <span><p>12</p></span>
+                </div>
+  
+                <div class="third">
+                  <span><p>13</p></span>
+                  <span><p>14</p></span>
+                  <span><p>15</p></span>
+                  <span><p>16</p></span>
+                  <span class="active"><p>17</p></span>
+                  <span><p>18</p></span>
+                  <span><p>19</p></span>
+                </div>
+  
+                <div class="fourth">
+                  <span><p>20</p></span>
+                  <span><p>21</p></span>
+                  <span><p>22</p></span>
+                  <span><p>23</p></span>
+                  <span><p>24</p></span>
+                  <span><p>25</p></span>
+                  <span><p>26</p></span>
+                </div>
+  
+                <div class="fifth">
+                  <span><p>27</p></span>
+                  <span><p>28</p></span>
+                  <span><p>29</p></span>
+                  <span><p>30</p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="back">
+            <input placeholder="What's the event?">
+            <div class="info">
+              <div class="date">
+                <p class="info-date">
+                Date: <span>Jan 15th, 2016</span>
+                </p>
+                <p class="info-time">
+                  Time: <span>6:35 PM</span>
+                </p>
+              </div>
+              <div class="address">
+                <p>
+                  Address: <span>129 W 81st St, New York, NY</span>
+                </p>
+              </div>
+              <div class="observations">
+                <p>
+                  Observations: <span>Be there 15 minutes earlier</span>
+                </p>
+              </div>
+            </div>
+  
+            <div class="actions">
+              <button class="save">
+                Save <i class="ion-checkmark"></i>
+              </button>
+              <button class="dismiss">
+                Dismiss <i class="ion-android-close"></i>
+              </button>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+      <script>
+        var app = {
+            settings: {
+                container: $('.calendar'),
+                calendar: $('.front'),
+                days: $('.weeks span'),
+                form: $('.back'),
+                input: $('.back input'),
+                buttons: $('.back button')
+            },
+
+            init: function() {
+                instance = this;
+                settings = this.settings;
+                this.bindUIActions();
+            },
+
+            swap: function(currentSide, desiredSide) {
+                settings.container.toggleClass('flip');
+
+            currentSide.fadeOut(900);
+            currentSide.hide();
+            desiredSide.show();
+
+            },
+
+            bindUIActions: function() {
+                settings.days.on('click', function(){
+                    instance.swap(settings.calendar, settings.form);
+                    settings.input.focus();
+                });
+
+                settings.buttons.on('click', function(){
+                    instance.swap(settings.form, settings.calendar);
+                });
+            }
+        }
+
+        app.init();
+      </script>
+    <!-- <div style="margin: 20px" class="w-auto p-3" style="background-color: #eee;" style="text-align: center; align-items: center;">
+        <div style="border-style: solid; border-width: 10px; border-color: #B2CCFF; border-radius: 10px; padding: 10px; margin: 10px;">
+            <p style="text-align:center; align-items: center;" class="jm-font">2022년 11월</p>
+            <table class="jm-font" align="center" width=500 style="text-align:center; align-items: center;"> 
+                <tr>
+                    <td style="color: red;">日</td>
+                    <td>月</td>
+                    <td>火</td>
+                    <td>水</td>
+                    <td>木</td>
+                    <td>金</td>
+                    <td style="color: blue;">土</td>
+                </tr>
+                <tr>
+                    <td style="color: red;"><p></p></td>
+                    <td><p></p></td>
+                    <td><p></p></td>
+                    <td><p></p></td>
+                    <td><p></p></td>
+                    <td><p></p></td>
+                    <td><p style="color: blue;"></p></td>
+                </tr>
+                <tr>
+                    <td style="color: red;"><p></p></td>
+                    <td><p></p></td>
+                    <td><p>1</p></td>
+                    <td><p>2</p></td>
+                    <td><p>3</p></td>
+                    <td><p>4</p></td>
+                    <td><p style="color: blue;">5</p></td>
+                </tr>
+                <tr>
+                    <td style="color: red;"><p>6</p></td>
+                    <td><p>7</p></td>
+                    <td><p>8</p></td>
+                    <td><p>9</p></td>
+                    <td><p>10</p></td>
+                    <td><p>11</p></td>
+                    <td><p style="color: blue;">12</p></td>
+                </tr>
+                <tr>
+                    <td style="color: red;"><p>13</p></td>
+                    <td><p>14</p></td>
+                    <td><p>15</p></td>
+                    <td><p>16</p></td>
+                    <td><p>17</p></td>
+                    <td><p>18</p></td>
+                    <td><p style="color: blue;">19</p></td>
+                </tr>
+                <tr>
+                    <td style="color: red;"><p>20</p></td>
+                    <td><p>21</p></td>
+                    <td><p>22</p></td>
+                    <td><p>23</p></td>
+                    <td><p>24</p></td>
+                    <td><p>25</p></td>
+                    <td><p style="color: blue;">26</p></td>
+                </tr>
+                <tr>
+                    <td style="color: red;"><p>27</p></td>
+                    <td><p>28</p></td>
+                    <td><p>29</p></td>
+                    <td><p>30</p></td>
+                    <td><p></p></td>
+                    <td><p></p></td>
+                    <td><p style="color: blue;"></p></td>
+                </tr>
+                <tr>
+                    <td style="color: red;"><p></p></td>
+                    <td><p></p></td>
+                    <td><p></p></td>
+                    <td><p></p></td>
+                    <td><p></p></td>
+                    <td><p></p></td>
+                    <td><p style="color: blue;"></p></td>
+                </tr>
+            </table>
+        </div>
+    </div> -->
+    
+    <div style="margin: 20px" class="w-auto p-3" style="background-color: #eee;" style="text-align: center; align-items: center;">
+        <div style="width: 100%; height: 100%; border-style: solid; border-width: 10px; border-color: #B2CCFF; border-radius: 10px; padding: 10px; margin: 10px;">
+          <h4 class="jm-font" style="background-color: #B2CCFF; color: black; display: inline-block;  margin-bottom: 10px; border-radius: 10px; padding: 10px;">SCHEDULE 등록</h4>
+          <h5 class="jm-font">날짜</h5> <input type="text" id="date" value="" class="jm-font" style="margin-bottom: 10px;" readonly>
+          <h5 class="jm-font" >내용</h5> <input type="text" id="content" value="" class="jm-font" style="margin-bottom: 10px;">
+          <button style="margin: 10px;" onclick="writeSchedule();" type="button" class="btn btn-secondary">작성</button>
+        </div>
+    </div>
+    <script>
+        var target; 
+        
+        $("td").on("click", function( obj ){
+            target = obj.currentTarget; 
+            $("#date").val($(obj.currentTarget.children[0]).text());
+        });
+        function writeSchedule(){
+            console.log(target)
+            var content = $('#content').val();
+            if (target.children.length > 1){
+                var div = target.children[1];
+                div.innerText = content;
+                $(div).addClass("class");
+            } else {
+                var div = document.createElement("div");
+                div.innerText = content;
+                $(target).append(div);
+                $(div).addClass("class");
+            } 
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>
