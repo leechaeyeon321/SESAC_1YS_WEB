@@ -50,7 +50,7 @@
                   background: #2b4450;
                   border-radius: 4px;
                   box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
-                  height: 700px;
+                  height: 800px;
                   perspective: 1000;
                   transition: .9s;
                   transform-style: preserve-3d;
@@ -209,106 +209,91 @@
                 </div>
 
                 <div class="first">
-                  <span class="last-month"><p>30</p></span>
-                  <span class="last-month"><p>31</p></span>
-                  <span><p>01</p></span>
-                  <span><p>02</p></span>
-                  <span><p>03</p></span>
-                  <span><p>04</p></span>
-                  <span><p>05</p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
                 </div>
   
                 <div class="second">
-                  <span><p>06</p></span>
-                  <span><p>07</p></span>
-                  <span><p>08</p></span>
-                  <span><p>09</p></span>
-                  <span><p>10</p></span>
-                  <span><p>11</p></span>
-                  <span><p>12</p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
                 </div>
   
                 <div class="third">
-                  <span><p>13</p></span>
-                  <span><p>14</p></span>
-                  <span><p>15</p></span>
-                  <span><p>16</p></span>
-                  <span><p>17</p></span>
-                  <span><p>18</p></span>
-                  <span><p>19</p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
                 </div>
   
                 <div class="fourth">
-                  <span><p>20</p></span>
-                  <span><p>21</p></span>
-                  <span><p>22</p></span>
-                  <span><p>23</p></span>
-                  <span><p>24</p></span>
-                  <span><p>25</p></span>
-                  <span><p>26</p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
                 </div>
   
                 <div class="fifth">
-                  <span><p>27</p></span>
-                  <span><p>28</p></span>
-                  <span><p>29</p></span>
-                  <span><p>30</p></span>
-                  <span class="next-month"><p>01</p></span>
-                  <span class="next-month"><p>02</p></span>
-                  <span class="next-month"><p>03</p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
+                  <span><p></p></span>
                 </div>
+                <div class="sixth">
+                    <span><p></p></span>
+                    <span><p></p></span>
+                    <span><p></p></span>
+                    <span><p></p></span>
+                    <span><p></p></span>
+                    <span><p></p></span>
+                    <span><p></p></span>
+                  </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    <div style="margin: 20px" class="w-auto p-3" style="background-color: #eee;" style="text-align: center; align-items: center;">
-        <div style="width: 100%; height: 100%; border-style: solid; border-width: 10px; border-color: #0B4C5F; border-radius: 10px; padding: 10px; margin: 10px;" class="col-8 col-md-12 col-lg-12">
-          <h4 class="jm-font col-12" style="background-color: #0B4C5F; color: white; display: inline-block;  margin-bottom: 10px; border-radius: 5px; padding: 10px; text-align: center;">SCHEDULE REGISTRATION</h4>
-          
-          <h5 class="jm-font col-12" style="text-align: center;"> 
-            <!-- display: flex를 주면 자식 요소들은 inline-block요소가 된다. display: flex가 먹혀있는 곳에서는 justify-content: center; 를 해주면 안에 있는 것들이 가운데 정렬이 됨.-->
-            DATE 
-            <input type="text" id="date" value="" class="jm-font" style="margin-bottom: 10px; border-radius: 5px; text-align: center;" readonly>
-          </h5>
-          <div class="input-group mb-3">
-            <input type="text" class="form-control col-8 col-md-12 col-lg-12" placeholder="SCHEDULE" aria-label="SCHEDULE INPUT" aria-describedby="button-addon2" id="content" value="">
-            <button style="margin: 10px; align: center;" onclick="writeSchedule();" class="btn btn-outline-secondary" type="button" id="button-addon2">Registration</button>
-          </div>
-        </div>
-    </div>
     <script>
-      var todayda = document.getElementById("todayda")
-      var date = new Date();
-      var year = date.getFullYear();
-      /* var month = (date.getMonth()+1); */
-      var day = date.getDate();
-      var listMonths = ["January", "Feburary", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      var currentMonth = listMonths[date.getMonth()-1]
-      todayda.innerText = `Today is ${day}th`
+        /* var todayda = document.getElementById("todayda")
+        var date = new Date();
+        var year = date.getFullYear();
+        
+        var day = date.getDate();
+        var listMonths = ["January", "Feburary", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var currentMonth = listMonths[date.getMonth()-1]
+        todayda.innerText = `Today is ${day}th`
 
-      var yearda = document.getElementById("yearda")
-      yearda.innerText = `${currentMonth} ${year}`
-      var target; 
-      
-      $("span").on("click", function( obj ){
-          target = obj.currentTarget; 
-          $("#date").val($(obj.currentTarget.children[0]).text());
-      });
-      function writeSchedule(){
-          console.log(target)
-          var content = $('#content').val();
-          if (target.children.length > 1){
-              var div = target.children[1];
-              div.innerText = content;
-              $(div).addClass("class");
-          } else {
-              var div = document.createElement("div");
-              div.innerText = content;
-              $(target).append(div);
-              $(div).addClass("class");
-          }
-      }
+        var yearda = document.getElementById("yearda")
+        yearda.innerText = `${currentMonth} ${year}`
+        var span = document.querySelectorAll("span")
+        console.log(span)
+        span.innerText = day */
+
+        var date = new Date();
+        var calendarYear = date.getFullYear();
+        var calendarMonth = (date.getMonth()+1);
+        var calendarToday = date.getDate();
+
+        const monthDays = 
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   </body>
