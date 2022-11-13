@@ -23,7 +23,7 @@
                 height: 100%;
                 justify-content: center;
                 margin: 0 auto;
-                max-width: 700px;
+                max-width: 100%;
                 width: 100%;
               }
 
@@ -31,7 +31,7 @@
         background: #2b4450;
         border-radius: 4px;
         box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
-        height: 700px;
+        height: 100%;
         perspective: 1000;
         transition: .9s;
         transform-style: preserve-3d;
@@ -135,17 +135,52 @@
             <td><label onclick="nextCalendar()"><h6>next month</h6></label></td>
         </tr>
         <tr>
-            <td align="center">일</td>
-            <td align="center">월</td>
-            <td align="center">화</td>
-            <td align="center">수</td>
-            <td align="center">목</td>
-            <td align="center">금</td>
-            <td align="center">토</td>
+            <td align="center">SUN</td>
+            <td align="center">MON</td>
+            <td align="center">TUE</td>
+            <td align="center">WED</td>
+            <td align="center">THU</td>
+            <td align="center">FRI</td>
+            <td align="center">SAT</td>
         </tr> 
     </table>
     </div>
-
+    <div style="margin: 20px" class="w-auto p-3" style="background-color: #eee;" style="text-align: center; align-items: center;">
+      <div style="width: 100%; height: 100%; border-style: solid; border-width: 10px; border-color: #0B4C5F; border-radius: 10px; padding: 10px; margin: 10px;" class="col-8 col-md-12 col-lg-12">
+        <h4 class="jm-font col-12" style="background-color: #0B4C5F; color: white; display: inline-block;  margin-bottom: 10px; border-radius: 5px; padding: 10px; text-align: center;">SCHEDULE REGISTRATION</h4>
+        
+        <h5 class="jm-font col-12" style="text-align: center;"> 
+          <!-- display: flex를 주면 자식 요소들은 inline-block요소가 된다. display: flex가 먹혀있는 곳에서는 justify-content: center; 를 해주면 안에 있는 것들이 가운데 정렬이 됨.-->
+          DATE 
+          <input type="text" id="date" value="날짜를 클릭하세요" class="jm-font" style="margin-bottom: 10px; border-radius: 5px; text-align: center;" readonly>
+        </h5>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control col-8 col-md-12 col-lg-12" placeholder="SCHEDULE" aria-label="SCHEDULE INPUT" aria-describedby="button-addon2" id="content" value="">
+          <button style="margin: 10px; align: center;" onclick="writeSchedule();" class="btn btn-outline-secondary" type="button" id="button-addon2">Registration</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      var target;
+      $("td").on("click", function( obj ){
+          target = obj.currentTarget; 
+          $("#date").val($(obj.currentTarget.children[0]).text());
+      });
+      function writeSchedule(){
+          console.log(target)
+          var content = $('#content').val();
+          if (target.children.length > 0){
+              var div = target.children[0];
+              div.innerText = content;
+              $(div).addClass("class");
+          } else {
+              var div = document.createElement("div");
+              div.innerText = content;
+              $(target).append(div);
+              $(div).addClass("class");
+          }
+        }
+    </script>
 <script language="javascript" type="text/javascript">
     buildCalendar();//
 </script>
