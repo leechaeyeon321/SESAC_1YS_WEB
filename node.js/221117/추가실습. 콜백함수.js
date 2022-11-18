@@ -23,4 +23,3 @@ call('call',function(name){
         })
     })
 })
-

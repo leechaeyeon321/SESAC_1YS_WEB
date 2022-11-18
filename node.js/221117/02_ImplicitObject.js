@@ -23,7 +23,7 @@ console.log(obj["out"]);
 console.time("시간"); //time과 timeEnd에 들어가는 건 똑같아야 시간 측정 가능.
 console.error('error');
 console.timeEnd("시간");
-console.table([{name:'abc'},{name:'def'}]);//console을 표 형태로 보여준다.
+console.table([{name:'abc'}, {name:'def'}]);//console을 표 형태로 보여준다.
 console.dir(obj,{colors: true, depth:1});//객체의 구조를 보여줌. / depth: 1 => 1단계까지 보겠다.
 console.dir(obj,{colors: true, depth:2});//deotg: 2 => 2단계까지 보겠다.
 console.trace("Error");
