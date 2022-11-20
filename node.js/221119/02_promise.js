@@ -1,6 +1,7 @@
-/* new Promise(function(resolve, reject){
-
-}); */
+/* 
+new Promise(function(resolve, reject){
+}); 
+*/
 function func1(){
     return new Promise(function(resolve,reject){
         resolve("성공");
@@ -30,6 +31,7 @@ func2().then(function(result){
 }).then(function(abc){
     console.log("abc: ", abc) // 체이닝
 });
+
 //pending상태에서는 then이 실행되지 않고 resolved된 fullfilled 상태가 되면 실행 됨. 
 //비동기지만 동기처럼 실행시킬 수 있다.
 
