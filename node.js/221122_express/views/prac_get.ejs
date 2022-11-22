@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>get으로 정보 받기</h3>
+    <form action="/getInform" method="get" name="getInform">
+        
+        이름<input type="text" name="id">
+        <fieldset>
+            <legend>성별</legend>
+            <input type="radio" name="gender" value="남" id="men"> <label for="men">남자</label>
+            <input type="radio" name="gender" value="여" id="women"> <label for="women">여자</label>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>생년월일</legend>
+            <select name="birthYear">
+                <%for(var i = 1940; i<=2022; i++) {%>
+                <option value="<%=i%>"><%=i%>년</option>
+                <% } %>
+            </select>
+            <select name="birthMonth">
+                <%for(var i = 1; i<=12; i++) {%>
+                <option value="<%=i%>"><%=i%>월</option>
+                <% } %>
+            </select>
+            <select name="birthDay">
+                <%for(var i = 1; i<=31; i++) {%>
+                <option value="<%=i%>"><%=i%>일</option>
+                <% } %>
+            </select>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>관심사</legend>
+            <input type="checkbox" name="interest" value="넷플 보기" id="net"/> <label for="net">여행</label>
+            <input type="checkbox" name="interest" value="음악 감상" id="music"/> <label for="music">음악 감상</label>
+            <input type="checkbox" name="interest" value="운동" id="pt"/><label for="pt">운동</label>
+        </fieldset>
+        <br>
+        <button type="submit">회원가입</button>
+    </form>
+    <script>
+    </script>
+</body>
+</html>

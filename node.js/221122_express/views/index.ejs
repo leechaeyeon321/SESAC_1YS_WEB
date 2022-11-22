@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=title%></title>
+</head>
+<body>
+    <%-include("navbar.ejs")%>
+    ejs 파일로 만든 html <br>
+    <img style="width: 100px;" src="/static/img/cat.jpg">
+    <!-- <% %>이렇게 작성해 둔 곳에 자바스크립트 코드를 작성할 수 있다. -->
+    
+    <% for(var i = 0; i<data.length; i++) { %> <!--열리고 닫히는 게 한 줄에 있어야 한다. -->
+        <div>안녕<%=data[i]%></div>
+    <% } %>
+
+    <div style="color: red;"><%="<span style='color: blue;'>안녕</span>"%>하세요</div>
+        <!-- =이 아니라 -를 쓴 경우 -->
+    <div style="color: red;"><%-"<span style='color: blue;'>안녕</span>"%>하세요</div>
+    <!-- <div style="color: red;"><%="안녕"%></div> -->
+
+    <!-- <% // -include("/test/test.ejs")%> -->
+    <%-include("test.ejs")%>
+    <!-- <% // if(true) { %>
+    
+    <% // } else if(true) {%>} --> <!-- 중괄호가 닫힌 그 줄에서 else if 또는 else 사용해야 한다. -->
+          
+    <!-- <% // } else { %>
+          
+    <% // } %> -->
+    <script>
+    </script>
+</body>
+</html>

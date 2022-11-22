@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>get 요청</h3>
+    <form action="/getForm" method="get" name="getform">
+        <!-- method에는 get 아니면 post -->
+        <!-- get방식은 폼에 입력한 정보가 기본 라우터 주소 뒤 ?표시 뒤 추가 되어 보임 -->
+        <!-- post는 폼에 입력한 정보가 보이지 않아 보안 상 좋음. -->
+        <!-- name은 아무거나 지정 가능 -->
+        
+        <input type="text" name="id">
+        <input type="password" name="pw"> <!-- type="password" 입력하면 안보인다. -->
+        <fieldset>
+            <legend>성별</legend>
+            <input type="radio" name="gender" value="여" id="women"> <label for="women">여자</label><!-- 단일 선택. 객관식 -->
+            <input type="radio" name="gender" value="남" id="men"> <label for="men">남자</label>
+            <!-- radio의 한 묶음으로 묶이는 기준은 name name이 같은 것들 중 하나만 선택 가능. -->
+            <!-- radio는 동그라미 -->
+        </fieldset>
+        
+        <fieldset>
+            <legend>취미</legend>
+            <input type="checkbox" name="interest" value="넷플 보기" id="net"/> <label for="net">넷플 보기</label>
+            <input type="checkbox" name="interest" value="음악 감상" id="music"/> <label for="music">음악 감상</label>
+            <input type="checkbox" name="interest" value="운동" id="pt"/><label for="pt">운동</label>
+        </fieldset>
+        
+        <!-- checkbox는 네모 -->
+        <button type="submit">submit</button>
+    </form>
+
+    <h3>post 요청</h3>
+    <form action="/postForm" method="post">
+        <input type="text" name="id" required> 
+        <!-- readonly는 읽을 수 밖에 없다. -->
+        <!-- value값을 미리 지정해두고 절대 안바뀌었으면 좋겠을 때 value값 입력 후 readonly -->
+        <input type="password" name="pw" placeholder="비밀번호" required> <!-- type="password" 입력하면 안보인다. -->
+        <select name="birthMonth">
+            <%for(var i = 1; i<=12; i++) {%>
+            <option value="<%=i%>"><%=i%>월</option>
+            <% } %>
+        </select>
+        <textarea name="content" rows="10" cols="30" required></textarea> <!-- rows:가로 줄 수 cols:세로 글자 수 -->
+            
+        <button type="submit">submit</button>
+    </form>
+    <script>
+        //name지정하면 script에서 불러올 수 있음. form태그의 name은 선택 사항.
+        console.log(document.forms["getform"])
+    </script>
+</body>
+</html>
