@@ -63,8 +63,6 @@ app.get('/ejs', (req, res) => {
 //만약 파일을 분리해놓았다면 "test/test"이런 식으로 render() 괄호 안에
 
 
-
-
 //----------form 에 관한 내용-------------
 //get요청
 app.get("/form", (req, res) => {
@@ -89,8 +87,6 @@ app.post("/postForm", (req,res) => {
     console.log(req.body);
     res.render("result", {data: req.body});
 })
-
-
 //서버를 여는 코드는 맨 뒤에 있어야 함.
 app.listen(port, ()=> {
     console.log("server open: ", port); //열었을 때 콘솔로 확인하고 싶으면

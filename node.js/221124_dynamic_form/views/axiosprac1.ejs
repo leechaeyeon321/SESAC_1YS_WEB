@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <script>
+        function sendGet(){
+            var form = document.getElementById("form_info");
+            axios({
+                method: "get",
+                url: "/form",
+                params:{
+                    name: form.name.value,
+                    gender: form.gender.value,
+                    birthYear: form.birthYear.value,
+                    birthMonth: form.birthMonth.value,
+                    birthDay: form.birthDay.value
+                }
+            }).then(function(res){
+                console.log(res);
+                alert(res.data.msg);
+            });
+        }
+        function ajaxGet(){
+            var form = document.getElementById("form_info");
+            $.ajax({
+                url: "/ajax",
+                type: "GET",
+                data: {
+                    name: form.name.value,
+                    gender: form.gender.value,
+                    birthYear: form.birthYear.value,
+                    birthMonth: form.birthMonth.value,
+                    birthDay: form.birthDay.value
+                },
+                success: function(data){
+                    console.log(data)
+                    alert(data.msg)
+                },
+                error: function(error){
+                    console.log(error)
+                }
+            })
+        }
+        function fetchPost(){
+            var form = document.getElementById("form_info");
+            fetch("/fetch", {
+                method: "post",
+                headers: {
+                    "Content-Type":"application/json",
+                },
+                body : JSON.stringify({
+                    name: form.name.value,
+                    gender: form.gender.value,
+                    birthYear: form.birthYear.value,
+                    birthMonth: form.birthMonth.value,
+                    birthDay: form.birthDay.value
+                })
+            }).then(function(response){
+                return response.json();
+            }).then(function(result){
+                console.log(result.msg)
+                alert(result.msg);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h3>post로 정보 받기</h3>
+    <form id="form_info">
+        이름<input type="text" name="name" required>
+        <fieldset>
+            <legend>성별</legend>
+            <input type="radio" name="gender" value="남" id="men" required> <label for="men">남자</label>
+            <input type="radio" name="gender" value="여" id="women" required> <label for="women">여자</label>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>생년월일</legend>
+            <select name="birthYear">
+                <%for(var i = 1940; i<=2022; i++) {%>
+                <option value="<%=i%>"><%=i%>년</option>
+                <% } %>
+            </select>
+            <select name="birthMonth">
+                <%for(var i = 1; i<=12; i++) {%>
+                <option value="<%=i%>"><%=i%>월</option>
+                <% } %>
+            </select>
+            <select name="birthDay">
+                <%for(var i = 1; i<=31; i++) {%>
+                <option value="<%=i%>"><%=i%>일</option>
+                <% } %>
+            </select>
+        </fieldset>
+        <br>
+        <button onclick="sendGet();" type="button">회원가입</button>
+        <button onclick="ajaxGet();" type="button">ajax get 회원가입</button>
+        <button onclick="fetchPost();" type="button">fetch post 회원가입</button>
+    </form>
+</body>
+</html>

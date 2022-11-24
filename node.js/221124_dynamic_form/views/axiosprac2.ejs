@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <style>
+        div{
+            position:relative;
+            margin: auto;
+            width: 300px;
+            height: auto;
+        }
+
+    </style>
+    <script>
+        function login(){
+            var form = document.getElementById("form_login");
+            axios({
+                method: "post",
+                url: "/login",
+                data: {id: form.id.value, pw: form.pw.value}
+            }).then(function(res){
+                document.querySelector("#div").innerHTML = res.data;
+            }); 
+        }
+        function login2(){
+            var form = document.getElementById("form_login");
+            $.ajax({
+                url: "/ajax",
+                type: "POST",
+                data: {
+                    id: form.id.value, 
+                    pw: form.pw.value
+                },
+                success: function(data){
+                    console.log(data)
+                    document.querySelector("#div").innerHTML = data.msg;
+                }
+            })
+        }
+        function login3(){
+            var form = document.getElementById("form_login");
+            $.ajax({
+                url: "/ajax.get",
+                type: "GET",
+                data: {
+                    id: form.id.value, 
+                    pw: form.pw.value
+                },
+                success: function(data){
+                    console.log(data)
+                    document.querySelector("#div").innerHTML = data.msg;
+                }
+            })
+        }
+        function login4(){
+            var form = document.getElementById("form_login");
+            fetch("/fetch", {
+                method: "post",
+                headers: {
+                    "Content-Type":"application/json",
+                },
+                body : JSON.stringify({
+                    id: form.id.value, 
+                    pw: form.pw.value
+                })
+            }).then(function(response) {
+                return response.json();
+            }).then(function(result){
+                console.log("fetchPost");
+                document.querySelector("#div").innerHTML = result.msg;
+            });
+        }
+        function login5(){
+            var form = document.getElementById("form_login");
+            let queryString = "?id=" + form.id.value + "&pw=" + form.pw.value;
+                fetch("/login" + queryString, {
+                    method: "get",
+                }).then(function(response) {
+                    return response.json();
+                }).then(function(result){
+                    console.log("fetchGet");
+                    document.querySelector("#result").innerHTML = result.msg;
+                });
+        }
+    </script>
+</head>
+<body>
+    <form id="form_login">
+        아이디 <br>
+        <input type="text" name="id"><br>
+        비밀번호 <br>
+        <input type="password" name="pw"><br>
+        <br>
+        <button type="button" onclick="login();">로그인</button>
+        <br>
+        <button type="button" onclick="login2();">ajax-post로그인</button>
+        <button type="button" onclick="login3();">ajax-get로그인</button>
+        <button type="button" onclick="login4();">fetch-post로그인</button>
+        <button type="button" onclick="login5();">fetch-get로그인</button>
+        <div style="text-align:center;" id="div"></div>
+    </form>
+</body>
+</html>
