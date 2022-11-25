@@ -16,9 +16,7 @@ app.get("/form", function(req, res){
 })
 app.post("/form", function(req, res){
     console.log(req.body);
-    if(req.body.id == "123" && req.body.pw){
-        res.send({msg: "성공했습니다"})
-    }
+    res.send({msg: "post-이름은: " + req.body.name})
 })
 
 app.listen(port, ()=> {
