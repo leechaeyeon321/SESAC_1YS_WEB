@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>newjeans_schedule</title>
+    <style type="text/css">
+      @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+      .jm-font{
+        font-family: 'Jeju Gothic', sans-serif;
+      }
+      td{
+          width: 50px;
+          height: 50px;
+          text-align: center;
+          font-size: 20px;
+          font-family: 굴림;
+          border:2px 
+      }
+      .container {
+                align-items: center;
+                display: flex;
+                height: 100%;
+                justify-content: center;
+                margin: 0 auto;
+                max-width: 100%;
+                width: 100%;
+              }
+
+      .calendar {
+        background: #2b4450;
+        border-radius: 4px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+        height: 100%;
+        perspective: 1000;
+        transition: .9s;
+        transform-style: preserve-3d;
+        width: 100%;
+        color: azure;
+      }
+    </style>
+    <script type="text/javascript">
+      var today = new Date();
+      var date = new Date();
+      function prevCalendar() {
+        today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+        buildCalendar();  
+      }
+
+      function nextCalendar() {
+          today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+          buildCalendar();
+      }
+      function buildCalendar(){
+          var doMonth = new Date(today.getFullYear(),today.getMonth(),1);
+          var lastDate = new Date(today.getFullYear(),today.getMonth()+1,0);
+
+          var tbCalendar = document.getElementById("calendar");
+          var tbCalendarYM = document.getElementById("tbCalendarYM");
+            tbCalendarYM.innerHTML = today.getFullYear() + "년 " + (today.getMonth() + 1) + "월"; 
+
+          while (tbCalendar.rows.length > 2){
+            tbCalendar.deleteRow(tbCalendar.rows.length-1);
+          }
+                
+            var row = null;
+            row = tbCalendar.insertRow();
+            var cnt = 0;
+            for (i=0; i<doMonth.getDay(); i++) {
+                cell = row.insertCell();
+                cnt = cnt + 1;
+            }
+            for (i=1; i<=lastDate.getDate(); i++) { 
+                cell = row.insertCell();
+                cell.innerHTML = i;
+                cnt = cnt + 1;
+            if (cnt % 7 == 1) {
+              cell.innerHTML = i
+          }    
+            if (cnt%7 == 0){
+              cell.innerHTML = i
+              row = calendar.insertRow();
+            }
+            if (today.getFullYear() == date.getFullYear()
+                && today.getMonth() == date.getMonth()
+                && i == date.getDate()) {
+              cell.bgColor = "#FAF58C";
+              }
+            }
+        }
+    </script>
+</head>
+<body>
+    <p></p>
+    <div class="container">
+      <table id="calendar" class="calendar" border="3" align="center" >
+        <tr><!-- label은 마우스로 클릭을 편하게 해줌 -->
+            <td><label onclick="prevCalendar()"><h6>prev month</h6></label></td>
+            <td align="center" id="tbCalendarYM" colspan="5">
+            yyyy m</td>
+            <td><label onclick="nextCalendar()"><h6>next month</h6></label></td>
+        </tr>
+        <tr>
+            <td align="center">SUN</td>
+            <td align="center">MON</td>
+            <td align="center">TUE</td>
+            <td align="center">WED</td>
+            <td align="center">THU</td>
+            <td align="center">FRI</td>
+            <td align="center">SAT</td>
+        </tr> 
+    </table>
+    </div>
+    <div style="margin: 20px" class="w-auto p-3" style="background-color: #eee;" style="text-align: center; align-items: center;">
+      <div style="width: 100%; height: 100%; border-style: solid; border-width: 10px; border-color: #0B4C5F; border-radius: 10px; padding: 10px; margin: 10px;" class="col-8 col-md-12 col-lg-12">
+        <h4 class="jm-font col-12" style="background-color: #0B4C5F; color: white; display: inline-block;  margin-bottom: 10px; border-radius: 5px; padding: 10px; text-align: center;">SCHEDULE REGISTRATION</h4>
+        
+        <h5 class="jm-font col-12" style="text-align: center;"> 
+          <!-- display: flex를 주면 자식 요소들은 inline-block요소가 된다. display: flex가 먹혀있는 곳에서는 justify-content: center; 를 해주면 안에 있는 것들이 가운데 정렬이 됨.-->
+          DATE 
+          <input type="text" id="date" value="날짜를 클릭하세요" class="jm-font" style="margin-bottom: 10px; border-radius: 5px; text-align: center;" readonly>
+        </h5>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control col-8 col-md-12 col-lg-12" placeholder="SCHEDULE" aria-label="SCHEDULE INPUT" aria-describedby="button-addon2" id="content" value="">
+          <button style="margin: 10px; align: center;" onclick="writeSchedule();" class="btn btn-outline-secondary" type="button" id="button-addon2">Registration</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      var target;
+      $("td").on("click", function( obj ){
+        target = obj.currentTarget; 
+        $("#date").val($(obj.currentTarget.children[0]).text());
+      });
+      function writeSchedule(){
+        console.log(target)
+        var content = $('#content').val();
+        if (target.children.length > 0){
+            var div = target.children[0];
+            div.innerText = content;
+            $(div).addClass("class");
+        } else {
+            var div = document.createElement("div");
+            div.innerText = content;
+            $(target).append(div);
+            $(div).addClass("class");
+          }
+        }
+    </script>
+<script language="javascript" type="text/javascript">
+    buildCalendar();//
+</script>
+</body>
+</html>
