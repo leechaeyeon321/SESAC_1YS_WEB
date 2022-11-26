@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h5>Upload.single()</h5>
+    <form action="/upload" method="POST" enctype="multipart/form-data"> 
+        <!-- enctype: 인코딩 타입 파일을 인코딩하면 깨질 수 있어서 꼭 enctype 속성 지정해야 함-->
+        <input type="text" name="name"><!-- multer 미들웨어에서 처리 O -->
+        <input type="file" name="userfile">
+        <input type="text" name="name2"> <!-- multer 미들웨어에서 처리 X -->
+        <!-- 이 이름으로는 파일 이름을 설정할 수 없다. -->
+        <!-- multer는 파일에서 처리해야 할 데이터는 파일보다 위에 있어야 한다. -->
+        <br>
+        <button>업로드</button>
+    </form>
+
+    <h5>Upload.array()</h5>
+    <form action="/upload-array" method="POST" enctype="multipart/form-data"> 
+        <!-- enctype: 인코딩 타입 파일을 인코딩하면 깨질 수 있어서 꼭 enctype 속성 지정해야 함-->
+        <input type="file" name="userfile" multiple> <!-- 여러개의 파일을 지정할 수 있음. -->
+        <button>업로드</button>
+    </form>
+
+    <h5>Upload.fields()</h5>
+    <form action="/upload-fields" method="POST" enctype="multipart/form-data"> 
+        <!-- enctype: 인코딩 타입 파일을 인코딩하면 깨질 수 있어서 꼭 enctype 속성 지정해야 함-->
+        <input type="file" name="userfile1"> <!-- 여러개의 파일을 지정할 수 있음. -->
+        <input type="file" name="userfile2">
+        <input type="file" name="userfile3"> 
+        <br><br>
+        <button>업로드</button>
+    </form>
+</body>
+</html>
