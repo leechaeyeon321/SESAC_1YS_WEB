@@ -50,9 +50,22 @@
             }).then((a) => {return a.data;
             }).then((d) => {
                 document.querySelector("img").src = d.path;
+                var div = document.querySelector("div")
+                div.style.backgroundColor = "white";
             }); 
         }
     </script>
+    <style>
+        #div{
+            width: 350px;
+            height: 400px;
+            background-color: aliceblue;
+            border-color: aliceblue;
+        }
+        #img{
+            width: 300px;
+        }
+    </style>
 </head>
 <body>
     <form id="form_register" enctype="multipart/form-data">
@@ -67,7 +80,9 @@
         <input type="file" name="dynamic-userfile" id="dynamic-file">
         <button type="button" onclick="login();">회원가입</button>
         <br>
-        <img src="" width="200" alt="">
+        <div id="div">
+            <img src="" id="img">
+        </div>
     </form>
 </body>
 </html>
