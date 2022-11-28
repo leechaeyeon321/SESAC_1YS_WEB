@@ -31,7 +31,7 @@ app.get("/prac35", (req, res)=> {
 app.post("/upload", upload.single("userfile"), (req, res) => {
     console.log("req.file: ", req.file); 
     console.log(req.body);
-    res.render("result", {data: req.file.filename})
+    res.render("result", {data: req.file.filename, body: req.body})
 })
 
 app.listen(port, () => {
