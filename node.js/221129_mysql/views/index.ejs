@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <script>
+        function login(){
+            var form = document.getElementById("form_register")
+            var formData = new FormData();
+            formData.append('id', form.id.value);
+            formData.append('pw', form.pw.value);
+            formData.append('name', form.name.value);
+            formData.append('gender', form.gender.value);
+            formData.append('birthYear', form.birthYear.value);
+            formData.append('birthMonth', form.pw.value);
+            formData.append('birthDay', form.pw.value);
+            formData.append('age', form.age.value);
+
+            var file = document.getElementById('dynamic-file');
+            formData.append('dynamic-userfile', file.files[0]);
+
+            axios({
+                method: "post",
+                url: "/login",
+                data: formData
+            }).then(function(res){
+                /* document.querySelector("#div").innerHTML = res.data; */
+            }); 
+        }
+    </script>
+</head>
+<body>
+    <form id="form_register" enctype="multipart/form-data">
+        <h3>회원 등록</h3> 
+        
+        <%for (let a  = 0; i<rows.length; i++){ %>
+            <div>
+                id: <span><%=rows[i].id%></span> <br>
+                name: <span><%=rows[i].name%></span>
+            </div>
+        <% } %>
+
+            id: <input type="text" name="id"/> <br><br>
+            pw: <input type="password" name="pw"/> <br><br>
+            name: <input type="text" name="name"/><br><br>
+            <fieldset>
+                <legend>gender</legend>
+                <input type="radio" name="gender" value="F" id="women"> <label for="women">女</label>
+                <input type="radio" name="gender" value="M" id="men"> <label for="men">男</label>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Birthday</legend>
+                <select name="birthYear">
+                    <%for(var i = 1940; i<=2022; i++) {%>
+                    <option value="<%=i%>"><%=i%>년</option>
+                    <% } %>
+                </select>
+                <select name="birthMonth">
+                    <%for(var i = 1; i<=12; i++) {%>
+                    <option value="<%=i%>"><%=i%>월</option>
+                    <% } %>
+                </select>
+                <select name="birthDay">
+                    <%for(var i = 1; i<=31; i++) {%>
+                    <option value="<%=i%>"><%=i%>일</option>
+                    <% } %>
+                </select>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Age</legend>
+                <select name="age" id="age">
+                    <%for(var i = 1; i<=110; i++){%>
+                        <option value="<%=i%>"><%=i%>세</option>
+                    <% } %>
+                </select>
+            </fieldset>
+            <br><br>
+            <button type="button" onclick="login()">register</button>
+            <div id="div"></div>
+    </form>
+</body>
+</html>
