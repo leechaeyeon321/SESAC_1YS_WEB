@@ -22,9 +22,8 @@ exports.get_visitor = (cb) => {
 
 exports.register_visitor = (info, cb) => {
     // info = req.body;가 있다. {name: , comment: }
-
     var sql = `insert into visitor(name, comment) values('${info.name}', '${info.comment}')`
-
+    //info.name = req.body.name
     cnn.query(sql, (err, result) => {
         if(err) throw err;
 
