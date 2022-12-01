@@ -35,14 +35,15 @@ app.get("/login", function(req, res){
 
 app.get("/login", function(req, res){
     //res.render("result")
-    console.log(req.query)
     cnn.query("insert into user(id, pw) values(req.body.id, req.body.pw", (err, result) => {
         if (err) throw err;
 
         console.log(result);
         res.render("index", { rows: result });
     //insert into user(id, pw) values(req.body.id, req.body.pw, )
+    })
 })
+
 
 app.listen(port, () => {
     console.log("Open", port);

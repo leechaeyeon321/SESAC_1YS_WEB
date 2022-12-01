@@ -88,6 +88,12 @@ app.post("/postForm", (req,res) => {
     res.render("result", {data: req.body});
 })
 //서버를 여는 코드는 맨 뒤에 있어야 함.
+
+app.get('*', (req, res) => {
+    //내가 정의해둔 router가 아닌 다른 router로 접속했다면 이런 router는 없다고 알려줄 수 있는 코드
+    //제일 마지막에 써야한다.
+    res.send("주소가 존재하지 않습니다. 다시 한 번 확인해주세요.")
+})
 app.listen(port, ()=> {
     console.log("server open: ", port); //열었을 때 콘솔로 확인하고 싶으면
 })
