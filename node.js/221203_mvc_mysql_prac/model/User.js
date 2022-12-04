@@ -8,7 +8,7 @@ const cnn = mysql.createConnection({
 })
 
 exports.login = (info, cb) => {
-    var sql = `select * from login where id = '${info.id}' and pw = '${info.pw}'`
+    var sql = `select * from login where id = '${info.id}' and pw = '${info.pw}' limit1;`;
     cnn.query(sql, (err, result) => {
         if(err) throw err;
 
@@ -19,6 +19,7 @@ exports.login = (info, cb) => {
         cb(flag);
     })
 }
+
 exports.register_login = (info, cb)=> {
     var sql = `insert into login values('${info.id}', '${info.pw}', '${info.name} ')`
     cnn.query(sql, (err, result) => {
