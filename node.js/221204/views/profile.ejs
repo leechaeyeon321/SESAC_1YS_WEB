@@ -8,7 +8,7 @@
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
     crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>회원가입</title>
+    <title>Profile</title>
     <script>
         function profileEdit() {
             var form = document.getElementById("form_profile");
@@ -29,7 +29,7 @@
             }).then((rep) => {return rep.data;} )
             .then((data) => {
                 if( data ) {
-                    alert( "회원정보 수정 성공" );
+                    alert( "회원정보 업데이트 성공" );
                 } else {
                     alert( "알 수 없는 문제가 발생했습니다." );
                 }
@@ -52,7 +52,7 @@
             }).then((rep) => {return rep.data;} )
             .then((data) => {
                 if( data ) {
-                    alert( "회원 탈퇴 성공" );
+                    alert( "회원을 탈퇴하였습니다." );
                     document.location.href = "/user/signin";
                 } else {
                     alert( "알 수 없는 문제가 발생했습니다." );
@@ -62,17 +62,17 @@
     </script>
 </head>
 <body>
-    <div class="scene flex">
-        <section class="card">
-        <h1 class="card__heading">
+    <div>
+        <section>
+        <h1>
             <span> Welcome</span>
         </h1>
         <form class="card__form" id="form_profile">
             <label for="ID" class="visually">ID :</label>
             <div><input id="ID" class="card__input" type="text" name="id" value="<%=data.id%>" readonly /></div>
-            <label for="password" class="visually">Password :</label>
-            <input id="password" class="card__input" type="password" name="pw" value="<%=data.pw%>" required />
-            <label for="name" class="visually">Name :</label>
+            <label for="password" class="visually">Password :</label><br>
+            <input id="password" class="card__input" type="password" name="pw" value="<%=data.pw%>" required /><br>
+            <label for="name" class="visually">Name :</label><br>
             <input id="name" class="card__input" type="text" name="name" value="<%=data.name%>" required />
             <button class="card__button" type="button" onclick="profileEdit();">
             <span>Edit</span>

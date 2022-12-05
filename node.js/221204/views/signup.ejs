@@ -29,17 +29,17 @@
                 data: user
             }).then((rep) => {return rep.data;} )
             .then((data) => {
-                alert("회원가입 성공");
+                alert("회원가입 되었습니다.");
                 document.location.href="/user/signin";
             });
         }
     </script>
 </head>
 <body>
-    <div class="scene flex">
-        <section class="card">
-        <h1 class="card__heading">
-            <span> Welcome</span>
+    <div>
+        <section>
+        <h1>
+            <span>Register</span>
         </h1>
         <form class="card__form" id="form_register">
             <label for="ID" class="visually">ID :</label> <br>
