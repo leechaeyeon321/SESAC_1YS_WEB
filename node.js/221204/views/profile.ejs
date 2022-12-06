@@ -12,11 +12,6 @@
     <script>
         function profileEdit() {
             var form = document.getElementById("form_profile");
-            if ( !form.checkValidity() ) {
-                form.reportValidity();
-
-                return false;
-            }
             let user = {
                 id: form.id.value,
                 pw: form.pw.value,

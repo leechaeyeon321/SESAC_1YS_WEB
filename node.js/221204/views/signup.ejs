@@ -12,12 +12,6 @@
     <script>
         function register() {
             var form = document.getElementById("form_register");
-            if ( !form.checkValidity() ) {
-                form.reportValidity();
-                console.log( "reportValidity" );
-
-                return false;
-            }
             let user = {
                 id: form.id.value,
                 pw: form.pw.value,
