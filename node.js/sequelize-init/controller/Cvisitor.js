@@ -6,7 +6,7 @@ exports.visitor = async (req, res) => {
     let result = await Visitor.findAll({
         attributes: [ "id", "name", "comment" ],
         order: [["id", "DESC" ]],
-        // limit: 1//
+        // limit: 1
     });
     res.render("visitor", {data: result});
     // Visitor.findAll()가 실행될 때까지 기다린다.
@@ -97,14 +97,23 @@ exports.get_visitor_by_id = async (req, res) => {
     }) */
     
     // promise를 활용한 방법
+    // Visitor.findOne({
+    //     where : { id: req.query.id }
+    // }).then((result) => {
+    //     res.send(result);
+    // })
 
     // select id, name, comment from visitor
     // select id, name, comment from visitor order by id ASC/DESC limit 1
-    Visitor.findOne({
+    Visitor.findAll({
+        attributes: [ "id", "name", "comment" ],
+        order: [["id", "DESC" ]],
         where : { id: req.query.id },
+        limit: 1
     }).then((result) => {
-        res.send(result);
+        res.send(result[0]);
     })
+
 
     // select * from visitor where id = req.query.id;
     
