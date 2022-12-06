@@ -1,10 +1,11 @@
 // const Visitor = require("../model/Visitor");
-const { Visitor } = require("../model"); //index.js에 접근할거라 폴더까지만 접근
+const { Visitor, Sequelize } = require("../model"); //index.js에 접근할거라 폴더까지만 접근
 
 
 exports.visitor = async (req, res) => {
     let result = await Visitor.findAll({
         attributes: [ "id", "name", "comment" ],
+        // where: { name: { [Sequelize.Op.like]: '%이%' } },
         order: [["id", "DESC" ]],
         // limit: 1
     });
