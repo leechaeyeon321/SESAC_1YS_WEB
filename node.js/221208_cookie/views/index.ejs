@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">안내</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="popId" onclick="closeWin();"></button>
+        </div>
+        <div class="modal-body">
+          <p><h4>인터넷익스플로어(IE) 지원 종료 안내</h4></p>
+          <p><h6>인터넷익스플로어(IE) 서비스 지원이 2022년 6월 15일 종료됨에 따라 안전하고 원활한 LH청약센터 이용을 위해 크롬, 사파리, 엣지 등의 웹브라우저를 이용해주시기 바랍니다.</h6></p>
+        </div>
+        <div class="modal-footer">
+          <div style="margin-right: 280;">
+            <input type="checkbox" onclick="close_pop()"> 오늘 그만보기
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const myModal = new bootstrap.Modal('#exampleModal');
+    //ejs 변수 popup을 이용해서 모달 열지말지 결정
+/*     if("<%=popup%>" == "block") myModal.show();
+    else myModal.hide(); */
+    if("<%=popup%>" !== "none") myModal.show();
+    // else myModal.hide();
+
+    function close_pop(){
+      axios({
+        method: "post",
+        url: "/setpopup"
+      }).then(() => {
+        myModal.hide();
+      })
+    }
+    function closeWin(popId) {
+      document.getElementById(popId).style.display = "none";    
+    }
+  </script>
+</body>
+</html>
