@@ -42,7 +42,13 @@ db.Payment.belongsTo(db.User,{ // user라는 테이블을 참조하고 있다는
     onDelete: "cascade"
 });
 
-db.Payment.hasMany(db.Payment, {
+db.Product.hasMany(db.Payment, {
+    foreignKey : "product_id",
+    sourceKey: "product_id",
+    onDelete: "cascade"
+})
+
+db.Product.hasMany(db.Payment, {
     foreignKey : "product_id",
     sourceKey: "product_id",
     onDelete: "cascade"
