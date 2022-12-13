@@ -1,0 +1,3 @@
+loginPage = {
+    res.render('/login');
+}
