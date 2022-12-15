@@ -20,6 +20,10 @@ app.get("/edit", function (req, res) {
     res.render("shopEdit");
 });
 
+app.get("/map", function (req, res) {
+    res.render("map");
+});
+
 app.listen(port, ()=> {
     console.log("server open: ", port);
 })
