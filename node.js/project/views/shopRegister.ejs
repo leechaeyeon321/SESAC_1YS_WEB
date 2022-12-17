@@ -64,10 +64,10 @@
                 top: 95%;
             }
             #registerHome {
-                width: 180px; 
+                width: 45px; 
                 position: absolute; 
-                left: 10%; 
-                top: 85%;
+                left: 28%; 
+                top: 94%;
             }
         </style>
     </head>
@@ -118,7 +118,7 @@
                             placeholder="요일 입력(ex. 월, 화, 수)"/>
                         </div>
                         <br>
-                        <img src="./img/IMG_0652.PNG" class="card-img-top animate__animated animate__bounceIn" id="registerHome" onclick="home();">
+                        <img src="./img/home.png" class="card-img-top animate__animated animate__bounceIn" id="registerHome" onclick="home();">
                         <button type="button" class="btn btn-warning register" onclick="editStore();">가게 등록하기</button>
                     </form>
                 </div>
@@ -150,6 +150,9 @@
                 window.location.href = "/storeDetail"
             }})
         }
+        function home() {
+                window.location.href = "/map"
+            }
         </script>
 </body>
 </html>

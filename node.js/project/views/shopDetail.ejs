@@ -126,10 +126,9 @@
                 font-size: 2.8rem;
             }
             #home {
-                width: 250px; 
+                width: 89px; 
                 position: absolute; 
-                left: 36%; 
-                top: -20%;
+                left: 43%; 
             }
         </style>
 
@@ -144,8 +143,8 @@
                     <p class="card-text"></p>
                 </div>
                     <ul class="list-group list-group-flush">
-                    <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">평점
-                        <ol style="float: right;" id = "average" ><img src="./img/5.PNG" alt=""class="stars" id="stars" onclick="stars();"><span id="aa"></span></ol>
+                    <li class="list-group-item" id="info" onclick="stars();"><img src="./img/IMG_0652.PNG" class="fish" alt="...">평점
+                        <ol style="float: right;" id = "average" ><img src="./img/5.PNG" alt=""class="stars" id="stars" ><span id="aa"></span></ol>
                     </li>
                     <div id="starPeople">
                         <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">별점을 남긴 사람들
@@ -173,7 +172,7 @@
                     </ul>
                     <div class="card-body button">
                         <button type="button" class="btn" id="recordStar">별점 남기기</button>
-                        <img src="./img/IMG_0652.PNG" class="card-img-top animate__animated animate__bounceIn" id="home" onclick="home();"><!-- 홈화면 이동 -->
+                        <img src="./img/home.png" class="card-img-top animate__animated animate__bounceIn" id="home" onclick="home();"><!-- 홈화면 이동 -->
                         <button href="./shopEdit.ejs" type="button" class="btn btn-warning" style="float: right; font-size: 2.8rem;">가게 수정하기</button>
                     </div>
             </div>
@@ -182,19 +181,22 @@
             <div class="card-header titleStar"><img src="./img/IMG_0652.PNG" class="fish" alt="...">별점 남기기
                 <button type="button" class="btn-close" aria-label="Close" onclick="regiStarClose();"style="float: right; font-size: 2.8rem;"></button></div>
                 <div class="card-body contentStar">
-                    <div class="star-rating starCard" id="star">
-                        <input type="radio" id="5-stars" name="rating" value="5" />
-                        <label for="5-stars" class="star">&#9733;</label>
-                        <input type="radio" id="4-stars" name="rating" value="4" />
-                        <label for="4-stars" class="star">&#9733;</label>
-                        <input type="radio" id="3-stars" name="rating" value="3" />
-                        <label for="3-stars" class="star">&#9733;</label>
-                        <input type="radio" id="2-stars" name="rating" value="2" />
-                        <label for="2-stars" class="star">&#9733;</label>
-                        <input type="radio" id="1-star" name="rating" value="1" />
-                        <label for="1-star" class="star">&#9733;</label>
-                    </div>
-                    <button class="btn btn-warning starRegi" onclick="regiStar();">등록</button>
+                    <form action="">
+                        <div class="star-rating starCard" id="star">
+                            <input type="radio" id="5-stars" name="rating" value="5" />
+                            <label for="5-stars" class="star">&#9733;</label>
+                            <input type="radio" id="4-stars" name="rating" value="4" />
+                            <label for="4-stars" class="star">&#9733;</label>
+                            <input type="radio" id="3-stars" name="rating" value="3" />
+                            <label for="3-stars" class="star">&#9733;</label>
+                            <input type="radio" id="2-stars" name="rating" value="2" />
+                            <label for="2-stars" class="star">&#9733;</label>
+                            <input type="radio" id="1-star" name="rating" value="1" />
+                            <label for="1-star" class="star">&#9733;</label>
+                        </div>
+                        <button class="btn btn-warning starRegi" onclick="regiStar();">등록</button>
+                    </form>
+                    
                 </div>
             </div>
         </div>    
