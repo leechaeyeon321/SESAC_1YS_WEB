@@ -72,7 +72,10 @@
                 display: none;
             }
             .sPid {
-                font-size: 1.5rem;
+                font-size: 2rem;
+            }
+            #starPeopleStars {
+                width: 200px;
             }
             /* 누르는 별점 */
             .star-rating {
@@ -129,6 +132,7 @@
                 top: -20%;
             }
         </style>
+
     </head>
     <body>
         <div class="wrap">
@@ -147,23 +151,15 @@
                         <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">별점을 남긴 사람들
                             <button type="button" class="btn-close" aria-label="Close" onclick="starPeopleClose();"style="float: right; font-size: 2.8rem;"></button><br><br>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                   <div class="card">
                                     <div class="card-body">
                                       <h5 class="card-title sPid">id</h5>
-                                      <p class="card-text sPstar">별</p>
+                                      <p class="card-text sPstar"><img src="./img/5.PNG" alt=""id="starPeopleStars"></p>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="col-sm-6">
-                                  <div class="card">
-                                    <div class="card-body">
-                                      <h5 class="card-title sPid">id</h5>
-                                      <p class="card-text sPstar">별</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                            </div>
                         </li>
                     </div>
                     
@@ -240,7 +236,9 @@
             }
             regiStarClose();
             /* 1. regiStar 버튼을 누르면  */
-           function regiStar() {
+            let cnt = 0;
+            function regiStar() {
+                cnt++;
                 let star = document.querySelectorAll("#star");
                 let rating = {
                     rating: star.star.value
@@ -253,6 +251,61 @@
                 .then(() => {
                     alert("별점 남기기 성공");
                     document.querySelector("#div2").style.display = "none";
+                })
+                .then((rating)=>{
+                    const row = document.getElementById("row");
+                    const temp = document.createElement("div");
+                    if(rating == 1) {
+                        temp.innerHTML = `<div class="col-sm-12">
+                        <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title sPid">id</h5>
+                            <p class="card-text sPstar"><img src="./img/1.PNG" alt=""id="starPeopleStars"></p>
+                        </div>
+                        </div>
+                        </div>`;
+                        row.append(temp);
+                    } else if(rating == 2) {
+                        temp.innerHTML = `<div class="col-sm-12">
+                        <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title sPid">id</h5>
+                            <p class="card-text sPstar"><img src="./img/2.PNG" alt=""id="starPeopleStars"></p>
+                        </div>
+                        </div>
+                        </div>`;
+                        row.append(temp);
+                    } else if(rating == 3) {
+                        temp.innerHTML = `<div class="col-sm-12">
+                        <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title sPid">id</h5>
+                            <p class="card-text sPstar"><img src="./img/3.PNG" alt=""id="starPeopleStars"></p>
+                        </div>
+                        </div>
+                        </div>`;
+                        row.append(temp);
+                    } else if(rating == 4) {
+                        temp.innerHTML = `<div class="col-sm-12">
+                        <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title sPid">id</h5>
+                            <p class="card-text sPstar"><img src="./img/4.PNG" alt=""id="starPeopleStars"></p>
+                        </div>
+                        </div>
+                        </div>`;
+                        row.append(temp);
+                    } else {
+                        temp.innerHTML = `<div class="col-sm-12">
+                        <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title sPid">id</h5>
+                            <p class="card-text sPstar"><img src="./img/5.PNG" alt=""id="starPeopleStars"></p>
+                        </div>
+                        </div>
+                        </div>`;
+                        row.append(temp);
+                    }
                 })
                 .then((req) => {
                     let stars = document.getElementById('stars').src
@@ -290,7 +343,6 @@
                         stars.innerText= "./img/0.PNG"
                         document.getElementById("aa").innerText = req.ratingAVG
                     } 
-                    
                 })
             }
             function home() {
